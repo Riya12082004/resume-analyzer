@@ -8,18 +8,20 @@ from scipy.sparse import hstack, csr_matrix
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "https://resume-analyzer-coral-two.vercel.app",
+        "https://resume-analyzer-git-main-riya12082004s-projects.vercel.app",
         "https://resume-analyzer-idpta1nn-riya12082004s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 model = joblib.load("model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
 
