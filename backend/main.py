@@ -8,8 +8,6 @@ from scipy.sparse import hstack, csr_matrix
 
 app = FastAPI()
 
-from fastapi.middleware.cors import CORSMiddleware
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -22,6 +20,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 model = joblib.load("model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
 
@@ -137,7 +136,6 @@ async def analyze_resume(
             return {"error": "Only PDF files supported"}
 
         resume_text = extract_pdf_text(file_bytes)
-
         combined_text = resume_text + " [SEP] " + job_description
 
         resume_word_count = len(resume_text.split())
