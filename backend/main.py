@@ -12,13 +12,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://resume-analyzer-coral-two.vercel.app",
-        "https://resume-analyzer-git-main-riya12082004s-projects.vercel.app",
-        "https://resume-analyzer-idpta1nn-riya12082004s-projects.vercel.app",
-    ],
-    allow_credentials=True,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -127,6 +121,7 @@ def read_root():
 
 
 @app.post("/analyze")
+@app.post("/analyze/")
 async def analyze_resume(
     job_description: str = Form(...),
     resume_file: UploadFile = File(...),
