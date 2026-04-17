@@ -5,6 +5,7 @@ import pdfplumber
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from scipy.sparse import hstack, csr_matrix
+
 print("LATEST BACKEND DEPLOY")
 
 app = FastAPI()
