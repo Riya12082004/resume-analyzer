@@ -56,13 +56,13 @@ export default function Home() {
       formData.append("job_description", jobDescription);
 
       
-    const response = await fetch(
-  `${process.env.NEXT_PUBLIC_API_URL}/analyze`,
-  {
-    method: "POST",
-    body: formData,
-  }
-);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+console.log("API URL:", API_URL);
+
+const response = await fetch(`${API_URL}/analyze`, {
+  method: "POST",
+  body: formData,
+});
   
             const data = await response.json();
       setResult(data);
